@@ -1,1 +1,6 @@
 /.settings/
+/.idea/
+/target/
+.classpath
+.project
+storybookapi.iml

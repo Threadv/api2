@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>家庭伴读指南</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <script type="text/javascript" src="/static/share/js/jquery.js"></script>
+
+    <style type="text/css">
+        * {
+            padding: 0;
+            margin: 0;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-appearance: none;
+        }
+
+        html,
+        body {
+            background: #8cd5e4;
+            height: 100%;
+            font-size:0;
+        }
+
+        .container{height: 100%;}
+
+        .header{
+            width:100%;
+            margin-top:35px;
+        }
+
+        .content{
+            width:80%;
+            padding:0 10%;
+            min-height: 64%;
+            background:url(/img/content.png) center repeat-y ;
+            background-size:100%;
+        }
+
+        p{padding: 12px 0;}
+
+        img{
+            width:100%;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container" >
+    <div class="header">
+        <img src="/img/top.png" alt="" />
+    </div>
+    <div class="content">
+
+        ${content}
+
+    </div>
+    <div class="bottom">
+        <img src="/img/bottom.png" alt="" />
+    </div>
+
+</div>
+
+</body>
+
+
+</html>

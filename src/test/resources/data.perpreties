@@ -1,0 +1,9 @@
+# 返回切换次数添加字段
+#  查看最近参加的周计划  api/study/plan/recent_join_week_plan   "planChangeCount": 0,
+
+#宝宝会读（优能计划）购买
+#  api/abilityPlanBuy/create_ability_plan_order 创建购买优能计划订单
+#  api/abilityPlanBuy/balance_buy_ability_plan 余额购买优能计划
+
+# 首页添加
+#  api/userReadRecord/getUserReadStoryRecords   用户阅读故事足迹（type=1  故事类型）

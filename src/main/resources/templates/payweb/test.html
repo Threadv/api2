@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>锋绘动漫下载页</title>
+	<link rel="stylesheet" href="../../static/static/payweb//css/reset.css">
+	<link rel="stylesheet" href="../../static/static/payweb//css/download.css">
+	<script type="text/javascript" src="../../static/static/payweb//js/jquery.js"></script>
+	<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', '93a1bef87f597035']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+</head>
+<body>
+	<div class="full">
+		${name}
+		<div class="topContent">
+			<div class="center">
+				<div class="topLeft">
+					<img src="../../static/static/payweb//img/left.png">
+				</div>
+				<div class="topRight">
+					<div class="logo">
+						<img class="icon" src="../../static/static/payweb//img/logo.png">
+					</div>
+					<div class="load">
+						<div class="leftImg">
+							<img style="width:140px;height:140px;" src="../../static/static/payweb//img/img.png">
+						</div>
+						<div class="rightImg">
+							<a id="android" onclick="_hmt.push(['_trackEvent', 'download_pc', 'pc_download_andro', 'literature'])" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ifenghui.face">
+								<img class="android" src="../../static/static/payweb//img/and.png">
+							</a>
+							<a onclick="_hmt.push(['_trackEvent', 'download_pc', 'pc_download_ios', 'literature'])" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.ifenghui.face">
+								<img class="pcIos" src="../../static/static/payweb//img/ios.png">
+							</a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footContent">
+			<div class="centCount">
+				<a class="footImg phone" href="http://dongman.ifenghui.com/index.php?m=Index&a=download" target="_blank"></a>
+				<a class="footImg xin" href="#" target="_blank"></a>
+				<a class="footImg bo" href="http://weibo.com/vistafenghui" target="_blank"></a>
+				<!-- <img class="footImg" src="../../static/static/payweb//img/phone.png">
+				<img class="footImg" src="../../static/static/payweb//img/weixin.png">
+				<img class="footImg" src="../../static/static/payweb//img/weibo.png"> -->
+			</div>
+		</div>
+	</div>
+	<span id='verinfo' url-data='{$result}'></span>
+	<div class="mask" id="mask">
+		<img src="../../static/static/payweb//img/dlshare.png">
+	</div>
+	<script type="text/javascript">
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "//hm.baidu.com/hm.js?42dac7b186a03910b7f978d84be7b1db";
+	  var s = document.getElementsByTagName("script")[0];
+	  s.parentNode.insertBefore(hm, s);
+	})();
+	</script>
+	<script type="text/javascript">
+	//判断是否是微信打开
+	// function is_weixin(){
+	// 	var ua = navigator.userAgent.toLowerCase();
+	// 	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+	// 		return true;
+	//  	} else {
+	// 		return false;
+	// 	}
+	// };
+	// var packs='[{"channel":"biyeji","download":"http://ifenghui.oss-cn-hangzhou.aliyuncs.com/pkg/dongman/fenghui_4.3.4_0608_%E6%AD%A3%E5%BC%8F%E6%9C%8D_build_5-biyeji.apk"},{"channel":"qqqun","download":"http://ifenghui.oss-cn-hangzhou.aliyuncs.com/pkg/dongman/fenghui_4.3.4_0608_%E6%AD%A3%E5%BC%8F%E6%9C%8D_build_5-qqqun.apk"},{"channel":"shenmasousuo","download":"http://ifenghui.oss-cn-hangzhou.aliyuncs.com/pkg/dongman/fenghui_4.3.4_0601_%E6%AD%A3%E5%BC%8F%E6%9C%8D_build_5-%E7%A5%9E%E9%A9%AC%E6%90%9C%E7%B4%A2.apk"},{"channel":"xingqubuluo","download":"http://ifenghui.oss-cn-hangzhou.aliyuncs.com/pkg/dongman/fenghui_4.3.4_0601_%E6%AD%A3%E5%BC%8F%E6%9C%8D_build_5-%E5%85%B4%E8%B6%A3%E9%83%A8%E8%90%BD.apk"},{"channel":"weixin","download":"http://ifenghui.oss-cn-hangzhou.aliyuncs.com/pkg/dongman/fenghui_4.3.4_0601_%E6%AD%A3%E5%BC%8F%E6%9C%8D_build_5-%E5%BE%AE%E4%BF%A1.apk"}]'
+
+	var packs=$('#verinfo').attr('url-data');
+	var newarr=JSON.parse(packs);
+	console.log(newarr);
+	var mask=document.getElementById("mask");
+	var android=document.getElementById("android")
+
+	 $("#android").click(function(event){
+
+		var ua=navigator.userAgent.toLowerCase();
+		var str=location.href;
+		for(var i=0;i<newarr.length;i++){
+			if(str.indexOf(newarr[i].channel)>-1){
+				android.setAttribute("href", newarr[i].download)
+			}
+			if(str.indexOf(newarr[i].channel)>-1 && ua.match(/MicroMessenger/i)=="micromessenger"){
+				event.preventDefault();
+				$("#mask").show()
+			}
+
+		}
+	})
+	</script>
+</body>
+</html>

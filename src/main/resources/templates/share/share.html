@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>分享</title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1,user-scalable=yes"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <link rel="stylesheet" href="../../static/share//css/reset.css">
+    <link rel="stylesheet" href="../../static/share//css/share.css">
+    <script type="text/javascript" src="../../static/share/js/jquery-1.7.2.min.js"></script>
+</head>
+<body>
+<div class="full">
+    <div class="content">
+        <div class="top">
+            <img src="../../static/share/img/pic3.png" alt="">
+        </div>
+        <div align="center" class="logo">
+            <img src="../../static/share/img/receive_phone_hl.png" class="phone img-click" click-data="phone"/>
+            <img src="../../static/share/img/or.png" alt="" class="or">
+            <img src="../../static/share/img/receive_vx.png" class="wechat img-click" click-data="wechat"/>
+        </div>
+        <div class='input'>
+            <form action=${acceptCouponUrl} class='formData' shareSuccessUrl=${shareSuccessUrl}
+                  wxShareUrl=${wxShareUrl}>
+                <input type="number" id="phone" name="phone" value="" placeholder=" &nbsp;&nbsp;&nbsp;请输入手机号"
+                       maxlength="11" pattern="\d*" size="11">
+                <input type="hidden" id="userId" name="userId" value=${userId}>
+                <input type="hidden" id="wxBackCode" name="wxBackCode" value=${wxBackCode}>
+
+            </form>
+        </div>
+        <div class='intro'>
+            <span id="intro">请记得用这个手机号码注册登陆故事飞船</span>
+        </div>
+        <div class='button'>
+            <a href="javascript:void(0);" get-data="phoneGet" id="btn">免费领取</a>
+        </div>
+
+        <div class="bottom">
+            三大模块给你优质亲子陪伴 <br> 把早教老师带回家
+        </div>
+        <div class="download">
+            <a href="http://storyship.ifenghui.com/">
+                <img src="../../static/share/img/btn.png">
+            </a>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+
+    var phoneHL = "../../static/share/img/receive_phone_hl.png";
+    var phoneSrc = "../../static/share/img/receive_phone.png";
+    var wxHL = "../../static/share/img/receive_vx_hl.png";
+    var wxSrc = "../../static/share/img/receive_vx.png";
+
+
+    var wxBackCode = $("#wxBackCode").val();
+    if(wxBackCode==2){
+        $("#intro").html("该微信号已注册");
+        $("#intro").css("color", "#F39202");
+
+        $('#phone').hide();
+        $('#intro').addClass("wxTip");
+        $('#btn').attr('get-data', 'wechatGet');
+        $('.phone').attr("src", phoneSrc);
+        $('.wechat').attr('src', wxHL);
+
+    }
+    if(wxBackCode==3){
+        $("#intro").html("邀请链接无效，请重新获取");
+        $("#intro").css("color", "#F39202");
+
+        $('#phone').hide();
+        $('#intro').addClass("wxTip");
+        $('#btn').attr('get-data', 'wechatGet');
+        $('.phone').attr("src", phoneSrc);
+        $('.wechat').attr('src', wxHL);
+    }
+    if(wxBackCode==4){
+        $("#intro").html("已经领取");
+        $("#intro").css("color", "#F39202");
+
+        $('#phone').hide();
+        $('#intro').addClass("wxTip");
+        $('#btn').attr('get-data', 'wechatGet');
+        $('.phone').attr("src", phoneSrc);
+        $('.wechat').attr('src', wxHL);
+    }
+
+    $(".img-click").click(function () {
+        var clickData = $(this).attr('click-data');
+        if (clickData == 'phone') {//手机
+            $('#phone').show();
+            $('#intro').removeClass("wxTip");
+            $('#intro').html("请记得用这个手机号码注册登陆故事飞船")
+            $('#btn').attr('get-data', 'phoneGet')
+            $('.phone').attr("src", phoneHL);
+            $('.wechat').attr('src', wxSrc);
+        } else if (clickData == 'wechat') {//微信
+            $('#phone').hide();
+            $('#intro').addClass("wxTip");
+            $('#intro').html("请记得用当前微信号登录故事飞船");
+            $('#btn').attr('get-data', 'wechatGet');
+            $('.phone').attr("src", phoneSrc);
+            $('.wechat').attr('src', wxHL);
+        }
+    })
+
+
+    $("#btn").click(function () {
+
+            console.log(12454);
+            var clickData = $(this).attr('get-data');
+
+            if (clickData == 'phoneGet') {
+                var formData = $(".formData").serialize();
+                var phone = $("#phone").val();
+                if (phone == "") {
+                    $("#intro").html("请输入手机号");
+                    $("#intro").css("color", "#F39202");
+                    exit();
+                }
+                if (phone.length != 11) {
+                    $("#intro").html("手机号格式不对");
+                    $("#intro").css("color", "#F39202");
+                    exit();
+                }
+                var postUrl = $(".formData").attr("action");
+                var shareSuccessUrl = $(".formData").attr("shareSuccessUrl");
+                $.post(postUrl, formData, function (data) {
+                    if (data.status.code == 1) {
+                        window.location.href = shareSuccessUrl;
+                    }
+                    $("#intro").html(data.status.msg);
+                    $("#intro").css("color", "#F39202");
+                });
+            } else if (clickData == 'wechatGet') { //微信
+                var wxShareUrl = $(".formData").attr("wxShareUrl");
+                var userId = $("#userId").val();
+                window.location.href = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx31edd56a45a12c7f&redirect_uri=" + wxShareUrl + userId + "&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+
+            }
+        }
+    );
+</script>
+<!--统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function () {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?c965b151145f3c46edbe51621db6da22";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+</body>
+</html>
